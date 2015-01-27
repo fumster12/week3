@@ -10,21 +10,27 @@ webservice_url = "http://www.divvybikes.com/stations/json"
 data = urlopen(webservice_url).read().decode("utf8")
 result = json.loads(data)
 stations = result['stationBeanList']
+
 young_lat = 41.793414
 young_lon = -87.600915
 
 for station in stations:
-    StationId = station['id']
     Latitude = station['latitude']
     Longitude = station['longitude']
-    Name = station['stationName']
+    Name = ['stationName']
     Bikes = station['availableBikes']
-    x = (Latitude)
-    y = (Longitude)5
-    d = math.sqrt(((young_lat - x)(young_lat - x)) + ((young_lon - y)(young_lon-y)))
-    
-    
+
 print('The station closest to Young is', Name,'and there are', Bikes, 'bikes available.')
+
+
+## I Couldnt figure out how to input the distance formula into my code in order to get minumum distance..
+## so i used google maps to determine the closest station to Young.
+
+
+##    x = (Latitude)
+##    y = (Longitude)
+##    d = math.sqrt(((young_lat - x)(young_lat - x)) + ((young_lon - y)(young_lon-y)))
+##  
 
 
 ##def distance():
