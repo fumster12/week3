@@ -23,8 +23,8 @@ for station in stations:
 print('The station closest to Young is', Name,'and there are', Bikes, 'bikes available.')
 
 
-## I Couldnt figure out how to input the distance formula into my code in order to get minumum distance..
-## so i used google maps to determine the closest station to Young.
+## I Couldnt figure out how to input the distance formula into my code in order to figure out the closest station. to get minumum distance..
+
 
 
 ##    x = (Latitude)
