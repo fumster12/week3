@@ -1,58 +1,8 @@
-# Game of Blackjack
-
-# Simplified Rules (10 pts possible):
-# - Human player gets the first two cards
-# - Human player plays the rest of their hand
-# - Then computer gets next two cards
-# - Computer must take cards score  >= 17
-# - Computer must stand when score >= 17
-# - Aces always count as 11
-# - Human player loses if their score is > 21
-# - Computer loses if computer score is > 21
-# - Human player wins immediately if their score is exactly 21
-# - Computer wins immediately if their score is exactly 21
-# - If computer score is betwen 17 and 20, winner is determined by score
-# - If it's a tie, nobody wins.
-
-# Grading:
-# - 5 points for allowing a human user to play their complete hand
-# - 5 points for allowing the computer to play its hand
-
-# (Optional) Extras
-# [You don't get extra credit for these, but they're fun.]
-# - 1. Aces should count as 1 if counting as 11 would have made the score > 21
-# - 2. Initally, human and dealer both get two cards; one dealer card is face up
-# - 3. Allow the user to play as many games as they want
-# - 4. Dealing cards to the cmputer should have a dramatic, 4-second delay
-
-# Here's the psuedocode we wrote on the board in class:
+# Game of Blackjack by Funmi Dosunmu 1/27/15
 
 ## Get a deck of cards
 
-## Shuffle the deck
-
-## Deal the first two cards to user
-
-## User can choose to take cards as long as score < 21
-
-## If user goes over 21, game is over.
-
-## If user reaches 21, game is over.
-
-## If user stands with less than 21, then it's the dealer's turn:
-
-##    Computer takes two cards
-##    Computer must take more cards while computer score < 17
-##    If computer score reached 21, computer wins.
-##    If computer score goes over 21, computer loses.
-##    If computer score is 17 to 20, winner is determined by higher score.
-
-
-
-
-
 import random
-import time
 
 SUITS = "\u2663 \u2665 \u2666 \u2660".split()
 FACES = "A 2 3 4 5 6 7 8 9 10 J Q K".split()
@@ -61,6 +11,8 @@ deck = []
 for suit in SUITS:
   for face in FACES:
     deck.append(face+suit)
+
+## Shuffle the deck
 
 random.shuffle(deck)
 
@@ -77,44 +29,79 @@ def calculate_score(cards):
     value += points
   return value
 
-# Deal two cards
+## Deal the first two cards to user
+
 hand = [deck.pop(0), deck.pop(0)]
 score = calculate_score(hand)
 
-print("Your hand:", " ".join(hand))
+print("Your hand is:", " ".join(hand), "\nYou have:", score, "points")
 
-while score < 21 and input("Do you want another card? (y/n) ") == 'y':
+
+## User can choose to take cards as long as score < 21
+
+while score < 21 and input("Do you want another card? (yes/no)") == "yes":
   hand.append(deck.pop(0))
   score = calculate_score(hand)
-  print("Your hand:", ", ".join(hand))
-
+  print("Your hand is:", " ".join(hand), "\nYou have:", score, "points")
+  
+## If user goes over 21, game is over.
+  
 if score > 21:
   print("You're busted!")
+
+
+## If user reaches 21, game is over.
+
+
 elif score == 21:
-  print("You win!")
+  print("You Won!")
+
+
+## If user stands with less than 21, then it's the dealer's turn:
+  
 else:
-  print("You have %s points." % score)
+  print("You have:", score, "points")
   print()
-  dealer_hand = [deck.pop(0), deck.pop(0)]
-  dealer_score = calculate_score(dealer_hand)
-  print("Dealer has", " ".join(dealer_hand))
+  
+
+##    Computer takes two cards
+  
+  dealer = [deck.pop(0), deck.pop(0)]
+  dealer_score = calculate_score(dealer)
+  print("Dealer's hand", " ".join(dealer), "\nDealer has:", dealer_score, "points")
+
+##    Computer must take more cards while computer score < 17
+  
   while dealer_score < 17:
-    print("The dealer will take another card...")
-    time.sleep(5)
-    dealer_hand.append(deck.pop(0))
-    dealer_score = calculate_score(dealer_hand)
-    print("Dealer now has", " ".join(dealer_hand))
-    time.sleep(3)
+    print("Dealer will take another card")
+    dealer.append(deck.pop(0))
+    dealer_score = calculate_score(dealer)
+    print("Dealer's new hand is:", " ".join(dealer), "\nDealer has", dealer_score, "points")
 
-  if dealer_score > 21:
-    print("The dealer busted! You win!")
-  elif dealer_score == 21:
-    print("The dealer got 21! You lose.")
+##    If computer score reached 21, computer wins.
+    
+  if dealer_score == 21:
+    print("Dealer Won.") 
+  
+  
+##    If computer score goes over 21, computer loses.
+    
+  elif dealer_score  > 21:
+    print("Dealer Busted, You Won!")
+    
+##    If computer score is 17 to 20, winner is determined by higher score.
+    
   elif dealer_score > score:
-    print("You lost.")
-  elif dealer_score == score:
-    print("It's a tie.... nobody wins this time.")
-  else:
-    print("You win!")
+    print("Dealer Won")
+    
 
+  elif dealer_score == score:
+    print("It's a tie.")
+    
+  else:
+    print("Dealer has:", dealer_score, "points. \nYou Won")
+  
+           
+      
+    
 
