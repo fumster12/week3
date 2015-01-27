@@ -1,4 +1,4 @@
-# Divvy Bikes
+# Divvy Bikes by Funmi Dosunmu 1/27/15
 #
 # Here's an example of how to retrieve the list of Divvy bike stations:
 
@@ -20,7 +20,7 @@ for station in stations:
     Name = station['stationName']
     Bikes = station['availableBikes']
     x = (Latitude)
-    y = (Longitude)
+    y = (Longitude)5
     d = math.sqrt(((young_lat - x)(young_lat - x)) + ((young_lon - y)(young_lon-y)))
     
     
