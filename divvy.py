@@ -12,6 +12,7 @@ result = json.loads(data)
 stations = result['stationBeanList']
 young_lat = 41.793414
 young_lon = -87.600915
+
 for station in stations:
     StationId = station['id']
     Latitude = station['latitude']
@@ -20,9 +21,10 @@ for station in stations:
     Bikes = station['availableBikes']
     x = (Latitude)
     y = (Longitude)
-    min(d) = math.sqrt(((young_lat - x)(young_lat - x)) + ((young_lon - y)(young_lon-y)))
+    d = math.sqrt(((young_lat - x)(young_lat - x)) + ((young_lon - y)(young_lon-y)))
     
-print(Bikes)
+    
+print('The station closest to Young is', Name,'and there are', Bikes, 'bikes available.')
 
 
 ##def distance():
